@@ -15,6 +15,7 @@ const { vehicle } = Astro.props;
 const page = await getEntry('vehicles', vehicle.slug);
 if (!page) throw new Error(`Missing vehicle content for ${vehicle.slug}`);
 const { Content } = await render(page);
+const base = `${import.meta.env.BASE_URL}/`;
 ---
 
 <BaseLayout title={vehicle.name} description={vehicle.description} siteName={site.name}>
@@ -29,14 +30,14 @@ const { Content } = await render(page);
       <div class="vehicle-detail-render"><VehicleRender vehicle={vehicle.name} /></div>
       <div class="vehicle-detail-content"><Content /></div>
       <div class="vehicle-gallery">
-        {page.data.gallery.map((image) => <img src={image} alt={`${vehicle.name} schematic`} loading="lazy" />)}
+        {page.data.gallery.map((image) => <img src={`${base}${image.slice(1)}`} alt={`${vehicle.name} schematic`} loading="lazy" />)}
       </div>
       <div class="vehicle-specs detail-list">
         {page.data.specs.map((spec) => <div><span>{spec.label}</span><span>{spec.value}</span></div>)}
       </div>
       <div class="vehicle-tags vehicle-detail-tags">{vehicle.tags.map((tag) => <span>{tag}</span>)}</div>
-      <a class="button" href="/vehicles">Back to vehicles <span aria-hidden="true">↗</span></a>
+      <a class="button" href={`${base}vehicles`}>Back to vehicles <span aria-hidden="true">↗</span></a>
     </article>
   </main>
-  <footer><small>{site.copyright}</small><small><a href="/vehicles">All vehicles ↗</a></small></footer>
+  <footer><small>{site.copyright}</small><small><a href={`${base}vehicles`}>All vehicles ↗</a></small></footer>
 </BaseLayout>

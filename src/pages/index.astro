@@ -10,6 +10,7 @@ const logs = (await getCollection('logs')).sort((a, b) => b.data.date.valueOf() 
 const home = await getEntry('pages', 'home');
 if (!home) throw new Error('Missing homepage content at src/content/pages/home.md');
 const content = home.data;
+const base = `${import.meta.env.BASE_URL}/`;
 ---
 
 <BaseLayout title={content.title} description={content.description} siteName={site.name}>
@@ -20,7 +21,7 @@ const content = home.data;
         <h1>{content.hero.title}<br /><em>{content.hero.accent}</em></h1>
         <div class="hero-copy">
           <p>{content.hero.description}</p>
-          <a class="button" href={content.hero.actionHref}>{content.hero.action} <span aria-hidden="true">↓</span></a>
+          <a class="button" href={`${base}${content.hero.actionHref.slice(1)}`}>{content.hero.action} <span aria-hidden="true">↓</span></a>
         </div>
       </div>
       <div class="hero-sea"><span class="sea-label">{content.hero.signal}</span></div>
@@ -67,13 +68,13 @@ const content = home.data;
     <section class="section container" id="logs">
       <div class="section-heading">
         <h2>{content.logs.heading}</h2>
-        <a class="nav-contact" href={content.logs.actionHref}>{content.logs.action} ↗</a>
+        <a class="nav-contact" href={`${base}${content.logs.actionHref.slice(1)}`}>{content.logs.action} ↗</a>
       </div>
       <div class="logs-grid">
         {logs.slice(0, 3).map((log) => (
           <article class="log-item">
             <span class="tag">{log.data.category}</span>
-            <h3><a href={`/logs/${log.slug}`}>{log.data.title}</a></h3>
+            <h3><a href={`${base}logs/${log.slug}`}>{log.data.title}</a></h3>
             <p>{log.data.description}</p>
           </article>
         ))}
@@ -100,7 +101,7 @@ const content = home.data;
       </div>
       <div class="split-content">
         <p>{content.outreach.description}</p>
-        <a class="button" href={content.outreach.actionHref}>{content.outreach.action} <span aria-hidden="true">↗</span></a>
+        <a class="button" href={content.outreach.actionHref.startsWith('mailto:') ? content.outreach.actionHref : `${base}${content.outreach.actionHref.slice(1)}`}>{content.outreach.action} <span aria-hidden="true">↗</span></a>
       </div>
     </section>
 
@@ -111,7 +112,7 @@ const content = home.data;
       </div>
       <div class="split-content">
         <p>{content.sponsors.description}</p>
-        <a class="button" href={content.sponsors.actionHref}>{content.sponsors.action} <span aria-hidden="true">↗</span></a>
+        <a class="button" href={content.sponsors.actionHref.startsWith('mailto:') ? content.sponsors.actionHref : `${base}${content.sponsors.actionHref.slice(1)}`}>{content.sponsors.action} <span aria-hidden="true">↗</span></a>
       </div>
     </section>
 

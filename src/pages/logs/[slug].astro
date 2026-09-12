@@ -14,6 +14,7 @@ const { log } = Astro.props;
 const { Content } = await render(log);
 const page = await getEntry('sitePages', 'logs');
 if (!page) throw new Error('Missing logs page content at src/content/sitePages/logs.md');
+const base = `${import.meta.env.BASE_URL}/`;
 ---
 
 <BaseLayout title={log.data.title} description={log.data.description} siteName={site.name}>
@@ -25,5 +26,5 @@ if (!page) throw new Error('Missing logs page content at src/content/sitePages/l
       <Content />
     </article>
   </main>
-  <footer><small>{site.copyright}</small><small><a href="/logs">{page.data.articleBackLabel} ↗</a></small></footer>
+  <footer><small>{site.copyright}</small><small><a href={`${base}logs`}>{page.data.articleBackLabel} ↗</a></small></footer>
 </BaseLayout>

@@ -8,6 +8,7 @@ import '../../styles/global.css';
 const logs = (await getCollection('logs')).sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
 const page = await getEntry('sitePages', 'logs');
 if (!page) throw new Error('Missing logs page content at src/content/sitePages/logs.md');
+const base = `${import.meta.env.BASE_URL}/`;
 ---
 
 <BaseLayout title={page.data.title} description={page.data.description} siteName={site.name}>
@@ -21,11 +22,11 @@ if (!page) throw new Error('Missing logs page content at src/content/sitePages/l
       {logs.map((log) => (
         <article class="log-item">
           <span class="tag">{log.data.category} · {log.data.readTime}</span>
-          <h3><a href={`/logs/${log.slug}`}>{log.data.title}</a></h3>
+          <h3><a href={`${base}logs/${log.slug}`}>{log.data.title}</a></h3>
           <p>{log.data.description}</p>
         </article>
       ))}
     </div>
   </main>
-  <footer><small>{site.copyright}</small><small><a href="/">{page.data.backLabel} ↗</a></small></footer>
+  <footer><small>{site.copyright}</small><small><a href={base}>{page.data.backLabel} ↗</a></small></footer>
 </BaseLayout>

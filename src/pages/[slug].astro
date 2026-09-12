@@ -7,6 +7,8 @@ import { robotics } from '../../data/robotics';
 import VehicleRender from '../components/VehicleRender.astro';
 import '../styles/global.css';
 
+const base = `${import.meta.env.BASE_URL}/`;
+
 export async function getStaticPaths() {
   const sections = await getCollection('sections');
   return sections.map((section) => ({
@@ -52,7 +54,7 @@ const getTeamMetrics = (assignments: { type?: 'lead' | 'colead' | 'advisor' | 'm
                 <div class="vehicle-tags">
                   {vehicle.tags.map((tag) => <span>{tag}</span>)}
                 </div>
-                <a class="button" href={`/vehicles/${vehicle.slug}`}>Meet {vehicle.name} <span aria-hidden="true">↗</span></a>
+                <a class="button" href={`${base}vehicles/${vehicle.slug}`}>Meet {vehicle.name} <span aria-hidden="true">↗</span></a>
               </div>
               <VehicleRender vehicle={vehicle.name} compact />
             </article>
@@ -114,8 +116,8 @@ const getTeamMetrics = (assignments: { type?: 'lead' | 'colead' | 'advisor' | 'm
                         return member ? (
                           <a class="person-card" href={member.profileUrl} target="_blank" rel="noreferrer">
                             <div class="person-image">
-                              <img class="person-image-default" src={member.image} alt={`${member.name} portrait`} />
-                              <img class="person-image-hover" src={member.hoverImage} alt="" aria-hidden="true" />
+                              <img class="person-image-default" src={`${base}${member.image.slice(1)}`} alt={`${member.name} portrait`} />
+                              <img class="person-image-hover" src={`${base}${member.hoverImage.slice(1)}`} alt="" aria-hidden="true" />
                             </div>
                             <div class="person-copy">
                               <h3>{member.name}</h3>
@@ -136,7 +138,7 @@ const getTeamMetrics = (assignments: { type?: 'lead' | 'colead' | 'advisor' | 'm
       )}
     </article>
   </main>
-  <footer><small>{site.copyright}</small><small><a href="/">Back to base ↗</a></small></footer>
+  <footer><small>{site.copyright}</small><small><a href={base}>Back to base ↗</a></small></footer>
 </BaseLayout>
 
 {section.slug === 'team' && (
