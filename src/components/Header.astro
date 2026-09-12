@@ -1,0 +1,14 @@
+---
+import site from '../../data/team';
+---
+
+<header class="site-header">
+  <a class="wordmark" href="/" aria-label={`${site.name} home`}>
+    <span class="wordmark-mark" aria-hidden="true">≈</span>
+    <span>{site.name}<span class="wordmark-muted"> / {site.descriptor}</span></span>
+  </a>
+  <nav aria-label="Main navigation">
+    {site.navigation.map((item) => <a href={item.href}>{item.label}</a>)}
+  </nav>
+  <a class="nav-contact" href={`mailto:${site.contact.email}`}>{site.contact.label} <span aria-hidden="true">↗</span></a>
+</header>

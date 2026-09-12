@@ -1,0 +1,489 @@
+latestYear: 2026
+years:
+  2026:
+    divisions:
+      - slug: executive-heads
+        members:
+          - id: sc0001xu
+            role: "Head of Mecatron"
+            type: lead
+          - id: truong004
+            role: "Head of Mecatron"
+            type: lead
+      - slug: business-operations
+        members:
+          - id: tanz0201
+            role: "Head of Business Operations"
+            type: lead
+          - id: pchee005
+            role: "Head of Finances"
+            type: lead
+      - slug: mechanical
+        members:
+          - id: soon0076
+            role: "Mechanical Lead"
+            type: lead
+          - id: "11"
+            role: "Mechanical Co-Lead"
+            type: colead
+          - id: truong004
+            role: "Mechnical Team Advisor"
+            type: advisor
+      - slug: electrical-and-embedded
+        members:
+          - id: haoc0003
+            role: "Electrical and Embedded Lead"
+            type: lead
+          - id: haiduong001
+            role: "Electrical and Embedded Co-Lead"
+            type: colead
+          - id: sc0001xu
+            role: "Electrical and Embedded Team Advisor"
+            type: advisor
+      - slug: robotics-software
+        members:
+          - id: add-robotics-software-member-01
+            role: "Robotics software lead"
+            type: lead
+          - id: add-robotics-software-member-02
+            role: "robotics software member"
+            type: colead
+          - id: add-robotics-software-member-03
+            role: "robotics software member"
+            type: member
+          - id: add-robotics-software-member-04
+            role: "robotics software member"
+            type: member
+          - id: add-robotics-software-member-05
+            role: "robotics software member"
+            type: member
+          - id: add-robotics-software-member-06
+            role: "robotics software member"
+            type: member
+          - id: add-robotics-software-member-07
+            role: "robotics software member"
+            type: member
+          - id: add-robotics-software-member-08
+            role: "robotics software member"
+            type: member
+          - id: add-robotics-software-member-09
+            role: "robotics software member"
+            type: member
+          - id: add-robotics-software-member-10
+            role: "robotics software member"
+            type: member
+          - id: add-robotics-software-member-11
+            role: "robotics software member"
+            type: member
+          - id: add-robotics-software-member-12
+            role: "robotics software member"
+            type: member
+          - id: add-robotics-software-member-13
+            role: "robotics software member"
+            type: member
+          - id: add-robotics-software-member-14
+            role: "robotics software member"
+            type: member
+          - id: add-robotics-software-member-15
+            role: "robotics software member"
+            type: member
+          - id: add-robotics-software-member-16
+            role: "robotics software member"
+            type: member
+          - id: add-robotics-software-member-17
+            role: "robotics software member"
+            type: member
+          - id: add-robotics-software-member-18
+            role: "robotics software member"
+            type: member
+          - id: add-robotics-software-member-19
+            role: "robotics software member"
+            type: member
+          - id: add-robotics-software-member-20
+            role: "robotics software member"
+            type: member
+      - slug: digital-software
+        members:
+          - id: sc0001xu
+            role: "Digital Software Lead"
+            type: lead
+          - id: tanz0201
+            role: "Digital Software Lead"
+            type: lead
+          - id: add-digital-software-member-03
+            role: "digital software member"
+            type: member
+  2025:
+    divisions:
+      - slug: executive-heads
+        members:
+          - id: add-executive-heads-member-01
+            role: "Executive head"
+            type: lead
+          - id: add-executive-heads-member-02
+            role: "executive heads member"
+            type: lead
+          - id: add-executive-heads-member-03
+            role: "executive heads member"
+            type: lead
+          - id: add-executive-heads-member-04
+            role: "executive heads member"
+            type: lead
+          - id: add-executive-heads-member-05
+            role: "executive heads member"
+            type: lead
+          - id: add-executive-heads-member-06
+            role: "executive heads member"
+            type: lead
+          - id: add-executive-heads-member-07
+            role: "executive heads member"
+            type: lead
+          - id: add-executive-heads-member-08
+            role: "executive heads member"
+            type: lead
+          - id: add-executive-heads-member-09
+            role: "executive heads member"
+            type: lead
+          - id: add-executive-heads-member-10
+            role: "executive heads member"
+            type: lead
+          - id: add-executive-heads-member-11
+            role: "executive heads member"
+            type: lead
+          - id: add-executive-heads-member-12
+            role: "executive heads member"
+            type: lead
+          - id: add-executive-heads-member-13
+            role: "executive heads member"
+            type: lead
+          - id: add-executive-heads-member-14
+            role: "executive heads member"
+            type: lead
+          - id: add-executive-heads-member-15
+            role: "executive heads member"
+            type: lead
+          - id: add-executive-heads-member-16
+            role: "executive heads member"
+            type: lead
+          - id: add-executive-heads-member-17
+            role: "executive heads member"
+            type: lead
+          - id: add-executive-heads-member-18
+            role: "executive heads member"
+            type: lead
+          - id: add-executive-heads-member-19
+            role: "executive heads member"
+            type: lead
+          - id: add-executive-heads-member-20
+            role: "executive heads member"
+            type: lead
+      - slug: business-operations
+        members:
+          - id: add-business-operations-member-01
+            role: "Business operations lead"
+            type: lead
+          - id: add-business-operations-member-02
+            role: "business operations member"
+            type: member
+          - id: add-business-operations-member-03
+            role: "business operations member"
+            type: member
+          - id: add-business-operations-member-04
+            role: "business operations member"
+            type: member
+          - id: add-business-operations-member-05
+            role: "business operations member"
+            type: member
+          - id: add-business-operations-member-06
+            role: "business operations member"
+            type: member
+          - id: add-business-operations-member-07
+            role: "business operations member"
+            type: member
+          - id: add-business-operations-member-08
+            role: "business operations member"
+            type: member
+          - id: add-business-operations-member-09
+            role: "business operations member"
+            type: member
+          - id: add-business-operations-member-10
+            role: "business operations member"
+            type: member
+          - id: add-business-operations-member-11
+            role: "business operations member"
+            type: member
+          - id: add-business-operations-member-12
+            role: "business operations member"
+            type: member
+          - id: add-business-operations-member-13
+            role: "business operations member"
+            type: member
+          - id: add-business-operations-member-14
+            role: "business operations member"
+            type: member
+          - id: add-business-operations-member-15
+            role: "business operations member"
+            type: member
+          - id: add-business-operations-member-16
+            role: "business operations member"
+            type: member
+          - id: add-business-operations-member-17
+            role: "business operations member"
+            type: member
+          - id: add-business-operations-member-18
+            role: "business operations member"
+            type: member
+          - id: add-business-operations-member-19
+            role: "business operations member"
+            type: member
+          - id: add-business-operations-member-20
+            role: "business operations member"
+            type: member
+      - slug: mechanical
+        members:
+          - id: add-mechanical-member-01
+            role: "Mechanical lead"
+            type: lead
+          - id: add-mechanical-member-02
+            role: "mechanical member"
+            type: member
+          - id: add-mechanical-member-03
+            role: "mechanical member"
+            type: member
+          - id: add-mechanical-member-04
+            role: "mechanical member"
+            type: member
+          - id: add-mechanical-member-05
+            role: "mechanical member"
+            type: member
+          - id: add-mechanical-member-06
+            role: "mechanical member"
+            type: member
+          - id: add-mechanical-member-07
+            role: "mechanical member"
+            type: member
+          - id: add-mechanical-member-08
+            role: "mechanical member"
+            type: member
+          - id: add-mechanical-member-09
+            role: "mechanical member"
+            type: member
+          - id: add-mechanical-member-10
+            role: "mechanical member"
+            type: member
+          - id: add-mechanical-member-11
+            role: "mechanical member"
+            type: member
+          - id: add-mechanical-member-12
+            role: "mechanical member"
+            type: member
+          - id: add-mechanical-member-13
+            role: "mechanical member"
+            type: member
+          - id: add-mechanical-member-14
+            role: "mechanical member"
+            type: member
+          - id: add-mechanical-member-15
+            role: "mechanical member"
+            type: member
+          - id: add-mechanical-member-16
+            role: "mechanical member"
+            type: member
+          - id: add-mechanical-member-17
+            role: "mechanical member"
+            type: member
+          - id: add-mechanical-member-18
+            role: "mechanical member"
+            type: member
+          - id: add-mechanical-member-19
+            role: "mechanical member"
+            type: member
+          - id: add-mechanical-member-20
+            role: "mechanical member"
+            type: member
+      - slug: electrical-and-embedded
+        members:
+          - id: add-electrical-and-embedded-member-01
+            role: "Electrical and embedded lead"
+            type: lead
+          - id: add-electrical-and-embedded-member-02
+            role: "electrical and embedded member"
+            type: member
+          - id: add-electrical-and-embedded-member-03
+            role: "electrical and embedded member"
+            type: member
+          - id: add-electrical-and-embedded-member-04
+            role: "electrical and embedded member"
+            type: member
+          - id: add-electrical-and-embedded-member-05
+            role: "electrical and embedded member"
+            type: member
+          - id: add-electrical-and-embedded-member-06
+            role: "electrical and embedded member"
+            type: member
+          - id: add-electrical-and-embedded-member-07
+            role: "electrical and embedded member"
+            type: member
+          - id: add-electrical-and-embedded-member-08
+            role: "electrical and embedded member"
+            type: member
+          - id: add-electrical-and-embedded-member-09
+            role: "electrical and embedded member"
+            type: member
+          - id: add-electrical-and-embedded-member-10
+            role: "electrical and embedded member"
+            type: member
+          - id: add-electrical-and-embedded-member-11
+            role: "electrical and embedded member"
+            type: member
+          - id: add-electrical-and-embedded-member-12
+            role: "electrical and embedded member"
+            type: member
+          - id: add-electrical-and-embedded-member-13
+            role: "electrical and embedded member"
+            type: member
+          - id: add-electrical-and-embedded-member-14
+            role: "electrical and embedded member"
+            type: member
+          - id: add-electrical-and-embedded-member-15
+            role: "electrical and embedded member"
+            type: member
+          - id: add-electrical-and-embedded-member-16
+            role: "electrical and embedded member"
+            type: member
+          - id: add-electrical-and-embedded-member-17
+            role: "electrical and embedded member"
+            type: member
+          - id: add-electrical-and-embedded-member-18
+            role: "electrical and embedded member"
+            type: member
+          - id: add-electrical-and-embedded-member-19
+            role: "electrical and embedded member"
+            type: member
+          - id: add-electrical-and-embedded-member-20
+            role: "electrical and embedded member"
+            type: member
+      - slug: robotics-software
+        members:
+          - id: add-robotics-software-member-01
+            role: "Robotics software lead"
+            type: lead
+          - id: add-robotics-software-member-02
+            role: "robotics software member"
+            type: member
+          - id: add-robotics-software-member-03
+            role: "robotics software member"
+            type: member
+          - id: add-robotics-software-member-04
+            role: "robotics software member"
+            type: member
+          - id: add-robotics-software-member-05
+            role: "robotics software member"
+            type: member
+          - id: add-robotics-software-member-06
+            role: "robotics software member"
+            type: member
+          - id: add-robotics-software-member-07
+            role: "robotics software member"
+            type: member
+          - id: add-robotics-software-member-08
+            role: "robotics software member"
+            type: member
+          - id: add-robotics-software-member-09
+            role: "robotics software member"
+            type: member
+          - id: add-robotics-software-member-10
+            role: "robotics software member"
+            type: member
+          - id: add-robotics-software-member-11
+            role: "robotics software member"
+            type: member
+          - id: add-robotics-software-member-12
+            role: "robotics software member"
+            type: member
+          - id: add-robotics-software-member-13
+            role: "robotics software member"
+            type: member
+          - id: add-robotics-software-member-14
+            role: "robotics software member"
+            type: member
+          - id: add-robotics-software-member-15
+            role: "robotics software member"
+            type: member
+          - id: add-robotics-software-member-16
+            role: "robotics software member"
+            type: member
+          - id: add-robotics-software-member-17
+            role: "robotics software member"
+            type: member
+          - id: add-robotics-software-member-18
+            role: "robotics software member"
+            type: member
+          - id: add-robotics-software-member-19
+            role: "robotics software member"
+            type: member
+          - id: add-robotics-software-member-20
+            role: "robotics software member"
+            type: member
+      - slug: digital-software
+        members:
+          - id: add-digital-software-member-01
+            role: "Digital software lead"
+            type: lead
+          - id: add-digital-software-member-02
+            role: "digital software member"
+            type: member
+          - id: add-digital-software-member-03
+            role: "digital software member"
+            type: member
+          - id: add-digital-software-member-04
+            role: "digital software member"
+            type: member
+          - id: add-digital-software-member-05
+            role: "digital software member"
+            type: member
+          - id: add-digital-software-member-06
+            role: "digital software member"
+            type: member
+          - id: add-digital-software-member-07
+            role: "digital software member"
+            type: member
+          - id: add-digital-software-member-08
+            role: "digital software member"
+            type: member
+          - id: add-digital-software-member-09
+            role: "digital software member"
+            type: member
+          - id: add-digital-software-member-10
+            role: "digital software member"
+            type: member
+          - id: add-digital-software-member-11
+            role: "digital software member"
+            type: member
+          - id: add-digital-software-member-12
+            role: "digital software member"
+            type: member
+          - id: add-digital-software-member-13
+            role: "digital software member"
+            type: member
+          - id: add-digital-software-member-14
+            role: "digital software member"
+            type: member
+          - id: add-digital-software-member-15
+            role: "digital software member"
+            type: member
+          - id: add-digital-software-member-16
+            role: "digital software member"
+            type: member
+          - id: add-digital-software-member-17
+            role: "digital software member"
+            type: member
+          - id: add-digital-software-member-18
+            role: "digital software member"
+            type: member
+          - id: add-digital-software-member-19
+            role: "digital software member"
+            type: member
+          - id: add-digital-software-member-20
+            role: "digital software member"
+            type: member

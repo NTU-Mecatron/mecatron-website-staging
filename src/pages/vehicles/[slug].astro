@@ -1,0 +1,42 @@
+---
+import { getEntry, render } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Header from '../../components/Header.astro';
+import VehicleRender from '../../components/VehicleRender.astro';
+import site from '../../../data/team';
+import { robotics } from '../../../data/robotics';
+import '../../styles/global.css';
+
+export function getStaticPaths() {
+  return robotics.vehicles.map((vehicle) => ({ params: { slug: vehicle.slug }, props: { vehicle } }));
+}
+
+const { vehicle } = Astro.props;
+const page = await getEntry('vehicles', vehicle.slug);
+if (!page) throw new Error(`Missing vehicle content for ${vehicle.slug}`);
+const { Content } = await render(page);
+---
+
+<BaseLayout title={vehicle.name} description={vehicle.description} siteName={site.name}>
+  <Header />
+  <main class="container">
+    <article class="vehicle-detail">
+      <header class="page-intro">
+        <p class="article-meta">{page.data.label}</p>
+        <h1>{page.data.title}</h1>
+        <p>{page.data.description}</p>
+      </header>
+      <div class="vehicle-detail-render"><VehicleRender vehicle={vehicle.name} /></div>
+      <div class="vehicle-detail-content"><Content /></div>
+      <div class="vehicle-gallery">
+        {page.data.gallery.map((image) => <img src={image} alt={`${vehicle.name} schematic`} loading="lazy" />)}
+      </div>
+      <div class="vehicle-specs detail-list">
+        {page.data.specs.map((spec) => <div><span>{spec.label}</span><span>{spec.value}</span></div>)}
+      </div>
+      <div class="vehicle-tags vehicle-detail-tags">{vehicle.tags.map((tag) => <span>{tag}</span>)}</div>
+      <a class="button" href="/vehicles">Back to vehicles <span aria-hidden="true">↗</span></a>
+    </article>
+  </main>
+  <footer><small>{site.copyright}</small><small><a href="/vehicles">All vehicles ↗</a></small></footer>
+</BaseLayout>

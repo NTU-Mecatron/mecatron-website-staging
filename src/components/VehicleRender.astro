@@ -1,0 +1,56 @@
+---
+interface Props {
+  vehicle: string;
+  compact?: boolean;
+}
+
+const { vehicle, compact = false } = Astro.props;
+---
+
+<div class:list={['vehicle-render', { 'vehicle-render-compact': compact }]} data-vehicle-render={vehicle} aria-label={`${vehicle} 3D schematic`} role="img">
+  <div class="vehicle-render-grid"></div>
+  <span class="vehicle-render-label">Three.js / {vehicle}</span>
+</div>
+
+<script>
+  import * as THREE from 'three';
+
+  document.querySelectorAll<HTMLElement>('[data-vehicle-render]').forEach((mount) => {
+    if (mount.dataset.ready) return;
+    mount.dataset.ready = 'true';
+    const scene = new THREE.Scene();
+    const camera = new THREE.PerspectiveCamera(35, 1, 0.1, 100);
+    camera.position.set(3.8, 2.4, 5.2);
+    camera.lookAt(0, 0, 0);
+    const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+    renderer.setSize(mount.clientWidth, mount.clientHeight);
+    mount.appendChild(renderer.domElement);
+
+    const vehicle = new THREE.Group();
+    const hull = new THREE.Mesh(
+      new THREE.CapsuleGeometry(0.8, 2.6, 8, 18),
+      new THREE.MeshBasicMaterial({ color: 0xc5efe5, wireframe: true })
+    );
+    hull.rotation.z = Math.PI / 2;
+    vehicle.add(hull);
+    const nose = new THREE.Mesh(
+      new THREE.SphereGeometry(0.3, 12, 8),
+      new THREE.MeshBasicMaterial({ color: 0xff6b3d, wireframe: true })
+    );
+    nose.position.x = 1.55;
+    vehicle.add(nose);
+    const finMaterial = new THREE.MeshBasicMaterial({ color: 0xff6b3d, wireframe: true });
+    [-1, 1].forEach((side) => {
+      const fin = new THREE.Mesh(new THREE.BoxGeometry(0.8, 0.04, 0.45), finMaterial);
+      fin.position.set(0, side * 0.78, 0);
+      vehicle.add(fin);
+    });
+    scene.add(vehicle);
+    renderer.setAnimationLoop(() => {
+      vehicle.rotation.y += 0.003;
+      vehicle.rotation.x = Math.sin(Date.now() * 0.0005) * 0.04;
+      renderer.render(scene, camera);
+    });
+  });
+</script>

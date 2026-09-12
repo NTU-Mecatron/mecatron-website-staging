@@ -1,0 +1,29 @@
+---
+import { getCollection, getEntry, render } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Header from '../../components/Header.astro';
+import site from '../../../data/team';
+import '../../styles/global.css';
+
+export async function getStaticPaths() {
+  const logs = await getCollection('logs');
+  return logs.map((log) => ({ params: { slug: log.slug }, props: { log } }));
+}
+
+const { log } = Astro.props;
+const { Content } = await render(log);
+const page = await getEntry('sitePages', 'logs');
+if (!page) throw new Error('Missing logs page content at src/content/sitePages/logs.md');
+---
+
+<BaseLayout title={log.data.title} description={log.data.description} siteName={site.name}>
+  <Header />
+  <main class="container">
+    <article class="article">
+      <div class="article-meta">{log.data.category} · {log.data.readTime} · {log.data.date.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</div>
+      <h1>{log.data.title}</h1>
+      <Content />
+    </article>
+  </main>
+  <footer><small>{site.copyright}</small><small><a href="/logs">{page.data.articleBackLabel} ↗</a></small></footer>
+</BaseLayout>

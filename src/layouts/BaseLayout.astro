@@ -1,0 +1,24 @@
+---
+interface Props {
+  title: string;
+  description?: string;
+  siteName: string;
+}
+
+const { title, description, siteName } = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="theme-color" content="#07151b" />
+    <meta name="description" content={description} />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <title>{title} · {siteName}</title>
+  </head>
+  <body>
+    <slot />
+  </body>
+</html>

@@ -1,0 +1,158 @@
+---
+import { getCollection, render } from 'astro:content';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/Header.astro';
+import site from '../../data/team';
+import { robotics } from '../../data/robotics';
+import VehicleRender from '../components/VehicleRender.astro';
+import '../styles/global.css';
+
+export async function getStaticPaths() {
+  const sections = await getCollection('sections');
+  return sections.map((section) => ({
+    params: { slug: section.slug },
+    props: { section }
+  }));
+}
+
+const { section } = Astro.props;
+const { Content } = await render(section);
+const profileById = new Map(robotics.members.map((member) => [member.id, member]));
+const memberYears = Object.keys(robotics.memberYears.years).map(Number).sort((a, b) => a - b);
+const latestYear = robotics.memberYears.latestYear;
+const getTeamMetrics = (assignments: { type?: 'lead' | 'colead' | 'advisor' | 'member' }[]) => {
+  const types = assignments.map((assignment) => assignment.type ?? 'member');
+  return {
+    leads: types.filter((type) => type === 'lead').length,
+    coLeads: types.filter((type) => type === 'colead').length,
+    advisors: types.filter((type) => type === 'advisor').length,
+    members: types.filter((type) => type === 'member').length
+  };
+};
+---
+
+<BaseLayout title={section.data.title} description={section.data.description} siteName={site.name}>
+  <Header />
+  <main class="container">
+    <article class="section-page">
+      <header class="page-intro">
+        <p class="article-meta">{section.data.label}</p>
+        <h1>{section.data.title}</h1>
+        <p>{section.data.description}</p>
+      </header>
+      <div class="article-content"><Content /></div>
+      {section.slug === 'vehicles' && (
+        <div class="vehicle-catalog">
+          {robotics.vehicles.map((vehicle) => (
+            <article class="vehicle-card">
+              <div class="vehicle-card-copy">
+                <span class="tag">{vehicle.status} · {vehicle.year}</span>
+                <h2>{vehicle.name}</h2>
+                <p>{vehicle.description}</p>
+                <div class="vehicle-tags">
+                  {vehicle.tags.map((tag) => <span>{tag}</span>)}
+                </div>
+                <a class="button" href={`/vehicles/${vehicle.slug}`}>Meet {vehicle.name} <span aria-hidden="true">↗</span></a>
+              </div>
+              <VehicleRender vehicle={vehicle.name} compact />
+            </article>
+          ))}
+        </div>
+      )}
+      {section.slug === 'competitions' && (
+        <div class="catalog-grid">
+          {robotics.competitions.map((competition) => (
+            <article class="catalog-item">
+              <span class="tag">{competition.series}</span>
+              <h2>{competition.name}</h2>
+              <p>{competition.year}</p>
+            </article>
+          ))}
+        </div>
+      )}
+      {section.slug === 'team' && (
+        <div class="team-directory" data-team-directory data-latest-year={latestYear}>
+          <div class="year-picker">
+            <span class="year-picker-label">Team year</span>
+            <div class="year-tabs" role="tablist" aria-label="Select team year">
+              {memberYears.map((year) => (
+                <button
+                  class="year-tab"
+                  type="button"
+                  role="tab"
+                  aria-selected={year === latestYear}
+                  aria-controls={`team-year-${year}`}
+                  data-year-tab={year}
+                >
+                  {year}
+                </button>
+              ))}
+            </div>
+          </div>
+          {memberYears.map((year) => (
+            <div id={`team-year-${year}`} class="team-year" role="tabpanel" data-team-year={year} hidden={year !== latestYear}>
+              {robotics.teams.map((team) => {
+                const division = robotics.memberYears.years[String(year)]?.divisions.find((entry) => entry.slug === team.slug);
+                const metrics = division ? getTeamMetrics(division.members) : null;
+                return division ? (
+                  <section class="team-group">
+                    <div class="team-directory-item">
+                      <div>
+                        <span class="tag">Team</span>
+                        <h2>{team.name}</h2>
+                      </div>
+                      <div class="role-counts">
+                        <span>Lead × {metrics?.leads}</span>
+                        <span>Co-lead × {metrics?.coLeads}</span>
+                        <span>Advisor × {metrics?.advisors}</span>
+                        <span>Members × {metrics?.members}</span>
+                      </div>
+                    </div>
+                    <div class="people-grid">
+                      {division.members.map((assignment) => {
+                        const member = profileById.get(assignment.id);
+                        return member ? (
+                          <a class="person-card" href={member.profileUrl} target="_blank" rel="noreferrer">
+                            <div class="person-image">
+                              <img class="person-image-default" src={member.image} alt={`${member.name} portrait`} />
+                              <img class="person-image-hover" src={member.hoverImage} alt="" aria-hidden="true" />
+                            </div>
+                            <div class="person-copy">
+                              <h3>{member.name}</h3>
+                              <p>{assignment.role}</p>
+                              <p>{member.degree}</p>
+                              <span>{member.detail}</span>
+                            </div>
+                          </a>
+                        ) : null;
+                      })}
+                    </div>
+                  </section>
+                ) : null;
+              })}
+            </div>
+          ))}
+        </div>
+      )}
+    </article>
+  </main>
+  <footer><small>{site.copyright}</small><small><a href="/">Back to base ↗</a></small></footer>
+</BaseLayout>
+
+{section.slug === 'team' && (
+  <script>
+    const directory = document.querySelector('[data-team-directory]');
+    const tabs = directory?.querySelectorAll<HTMLButtonElement>('[data-year-tab]');
+    const years = directory?.querySelectorAll<HTMLElement>('[data-team-year]');
+    tabs?.forEach((tab) => tab.addEventListener('click', () => {
+      const selectedYear = tab.dataset.yearTab;
+      if (!selectedYear) return;
+      tabs.forEach((yearTab) => {
+        yearTab.setAttribute('aria-selected', String(yearTab === tab));
+      });
+      years?.forEach((year) => {
+        year.hidden = year.getAttribute('data-team-year') !== selectedYear;
+      });
+    }));
+  </script>
+)}

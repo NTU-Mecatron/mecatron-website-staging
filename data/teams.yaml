@@ -1,0 +1,12 @@
+- name: Executive heads
+  slug: executive-heads
+- name: Business operations
+  slug: business-operations
+- name: Mechanical
+  slug: mechanical
+- name: Electrical and embedded
+  slug: electrical-and-embedded
+- name: Robotics software
+  slug: robotics-software
+- name: Digital software
+  slug: digital-software

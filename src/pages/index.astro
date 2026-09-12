@@ -1,0 +1,128 @@
+---
+import { getCollection, getEntry } from 'astro:content';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/Header.astro';
+import SignalMark from '../components/SignalMark.astro';
+import site from '../../data/team';
+import '../styles/global.css';
+
+const logs = (await getCollection('logs')).sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+const home = await getEntry('pages', 'home');
+if (!home) throw new Error('Missing homepage content at src/content/pages/home.md');
+const content = home.data;
+---
+
+<BaseLayout title={content.title} description={content.description} siteName={site.name}>
+  <Header />
+  <main>
+    <section class="hero container">
+      <div class="hero-grid">
+        <h1>{content.hero.title}<br /><em>{content.hero.accent}</em></h1>
+        <div class="hero-copy">
+          <p>{content.hero.description}</p>
+          <a class="button" href={content.hero.actionHref}>{content.hero.action} <span aria-hidden="true">↓</span></a>
+        </div>
+      </div>
+      <div class="hero-sea"><span class="sea-label">{content.hero.signal}</span></div>
+    </section>
+
+    <section class="section container" id="vehicles">
+      <div class="section-heading">
+        <h2>{content.work.heading}</h2>
+        <p>{content.work.label}</p>
+      </div>
+      <div class="work-feature">
+        <div class="vehicle-visual">
+          <div class="vehicle-shape"></div>
+          <div class="visual-meta"><span>{content.work.visualLabel}</span><span>{content.work.visualDetail}</span></div>
+        </div>
+        <div class="work-details">
+          <SignalMark />
+          <h3>{content.work.name}</h3>
+          <p>{content.work.description}</p>
+          <div class="detail-list">
+            {content.work.facts.map((fact) => <div><span>{fact.label}</span><span>{fact.value}</span></div>)}
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section container" id="competitions">
+      <div class="section-heading">
+        <h2>{content.competitions.heading}</h2>
+        <p>{content.competitions.label}</p>
+      </div>
+      <div class="competition-feature">
+        <div>
+          <SignalMark />
+          <h3>{content.competitions.title}</h3>
+          <p>{content.competitions.description}</p>
+        </div>
+        <div class="detail-list">
+          {content.competitions.facts.map((fact) => <div><span>{fact.label}</span><span>{fact.value}</span></div>)}
+        </div>
+      </div>
+    </section>
+
+    <section class="section container" id="logs">
+      <div class="section-heading">
+        <h2>{content.logs.heading}</h2>
+        <a class="nav-contact" href={content.logs.actionHref}>{content.logs.action} ↗</a>
+      </div>
+      <div class="logs-grid">
+        {logs.slice(0, 3).map((log) => (
+          <article class="log-item">
+            <span class="tag">{log.data.category}</span>
+            <h3><a href={`/logs/${log.slug}`}>{log.data.title}</a></h3>
+            <p>{log.data.description}</p>
+          </article>
+        ))}
+      </div>
+    </section>
+
+    <div class="team-section">
+      <section class="section container" id="team">
+        <div class="section-heading">
+          <h2>{content.team.heading}</h2>
+          <p>{content.team.label}</p>
+        </div>
+        <div class="team-copy">
+          <h2>{content.team.statement}</h2>
+          <p>{content.team.description} <strong>{content.team.emphasis}</strong></p>
+        </div>
+      </section>
+    </div>
+
+    <section class="section container split-section" id="outreach">
+      <div class="section-heading">
+        <h2>{content.outreach.heading}</h2>
+        <p>{content.outreach.label}</p>
+      </div>
+      <div class="split-content">
+        <p>{content.outreach.description}</p>
+        <a class="button" href={content.outreach.actionHref}>{content.outreach.action} <span aria-hidden="true">↗</span></a>
+      </div>
+    </section>
+
+    <section class="section container split-section" id="sponsors">
+      <div class="section-heading">
+        <h2>{content.sponsors.heading}</h2>
+        <p>{content.sponsors.label}</p>
+      </div>
+      <div class="split-content">
+        <p>{content.sponsors.description}</p>
+        <a class="button" href={content.sponsors.actionHref}>{content.sponsors.action} <span aria-hidden="true">↗</span></a>
+      </div>
+    </section>
+
+    <section class="section container contact-section" id="contact">
+      <div class="section-heading">
+        <h2>{content.contact.heading}</h2>
+        <p>Contact / {site.location}</p>
+      </div>
+      <p>{content.contact.description}</p>
+      <a class="contact-link" href={`mailto:${content.contact.email}`}>{content.contact.action} <span aria-hidden="true">↗</span></a>
+    </section>
+  </main>
+  <footer><small>{content.footer.copyright}</small><small>{content.footer.note}</small></footer>
+</BaseLayout>

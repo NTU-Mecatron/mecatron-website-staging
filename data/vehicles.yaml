@@ -1,0 +1,61 @@
+
+- slug: phloaty
+  name: Phloaty
+  year: 2026
+  description: A buoyant surface platform for quick experiments, testing, and field support.
+  tags:
+    - surface
+    - support
+    - rapid test
+  status: Active
+
+- slug: phly
+  name: Phly
+  year: 2026
+  description: A compact aerial-water hybrid for fast observation above the surface.
+  tags:
+    - aerial
+    - observation
+    - prototype
+  status: Active
+
+- slug: kraken2
+  name: Kraken
+  year: 2026
+  description: Our deep-water platform for long missions and demanding recovery work.
+  tags:
+    - deep water
+    - autonomy
+    - survey
+  status: Active
+
+- slug: hydra
+  name: Hydra
+  year: 2026
+  description: A multi-vehicle concept built around redundancy, reach, and calm control.
+  tags:
+    - modular
+    - redundant
+    - prototype
+  status: Active
+
+- slug: lucy
+  name: Lucy
+  year: 2025
+  description: A precision platform for repeatable sensing and careful inspection.
+  tags:
+    - inspection
+    - sensing
+    - precision
+  status: Decommissioned
+
+- slug: kevin
+  name: Kevin
+  year: 2025
+  description: The latest member of the fleet, carrying forward lessons from every
+    previous build.
+  tags:
+    - latest
+    - research
+    - competition
+  status: Decommissioned
