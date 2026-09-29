@@ -1,8 +1,8 @@
 # Mecatron website maintenance guide
 
-**Last updated:** 2026-09-12  
+**Last updated:** 2026-09-30  
 **Documentation review interval:** 30 days  
-**Next review due:** 2026-10-12
+**Next review due:** 2026-10-30
 
 This guide is the source of truth for how the Mecatron website is structured and how a human or AI should safely edit it.
 
@@ -52,6 +52,7 @@ The following MDX files generate pages through the shared dynamic route `src/pag
 | `src/content/sections/outreach.mdx` | `/outreach` |
 | `src/content/sections/sponsors.mdx` | `/sponsors` |
 | `src/content/sections/contact.mdx` | `/contact` |
+| `src/pages/theme.astro` | `/theme` — visual palette review page |
 
 The dynamic route renders the MDX article first, then adds structured catalogs for vehicles, competitions, and team members based on YAML data.
 
@@ -151,6 +152,10 @@ Interactive behavior belongs in the component that owns the structure:
 - `src/components/VehicleRender.astro` owns client-side Three.js vehicle renders.
 - Member cards use links for external profiles; preserve keyboard focus, new-tab behavior, and `rel="noreferrer"`.
 - Do not replace content links with form submissions or client-side data-entry widgets.
+
+### Theme review page
+
+The `/theme` route is a shareable visual review page for the team palette. Its displayed color values and typography samples are sourced from `data/theme.yaml`; its layout and examples live in `src/pages/theme.astro`. Use it when collecting feedback on the visual system, and keep it synchronized with the CSS tokens in `src/styles/global.css` and the summary in `DESIGN.md`.
 
 The main design tokens are:
 

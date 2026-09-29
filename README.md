@@ -6,7 +6,7 @@ An Astro + MDX starter for a marine robotics team website. It builds to static H
 
 For the complete route map, content model, YAML schemas, editing workflow, deployment notes, and AI documentation-review protocol, read [`docs/SITE_GUIDE.md`](docs/SITE_GUIDE.md).
 
-**Documentation status:** last reviewed 2026-09-12; review every 30 days.
+**Documentation status:** last reviewed 2026-09-30; review every 30 days.
 
 ## Local development
 

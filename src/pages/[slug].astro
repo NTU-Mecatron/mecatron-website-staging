@@ -7,8 +7,6 @@ import { robotics } from '../../data/robotics';
 import VehicleRender from '../components/VehicleRender.astro';
 import '../styles/global.css';
 
-const base = `${import.meta.env.BASE_URL}/`;
-
 export async function getStaticPaths() {
   const sections = await getCollection('sections');
   return sections.map((section) => ({
@@ -22,6 +20,7 @@ const { Content } = await render(section);
 const profileById = new Map(robotics.members.map((member) => [member.id, member]));
 const memberYears = Object.keys(robotics.memberYears.years).map(Number).sort((a, b) => a - b);
 const latestYear = robotics.memberYears.latestYear;
+const base = import.meta.env.BASE_URL;
 const getTeamMetrics = (assignments: { type?: 'lead' | 'colead' | 'advisor' | 'member' }[]) => {
   const types = assignments.map((assignment) => assignment.type ?? 'member');
   return {
@@ -54,7 +53,7 @@ const getTeamMetrics = (assignments: { type?: 'lead' | 'colead' | 'advisor' | 'm
                 <div class="vehicle-tags">
                   {vehicle.tags.map((tag) => <span>{tag}</span>)}
                 </div>
-                <a class="button" href={`${base}vehicles/${vehicle.slug}`}>Meet {vehicle.name} <span aria-hidden="true">↗</span></a>
+                <a class="button" href={`/vehicles/${vehicle.slug}`}>Meet {vehicle.name} <span aria-hidden="true">↗</span></a>
               </div>
               <VehicleRender vehicle={vehicle.name} compact />
             </article>
@@ -116,8 +115,8 @@ const getTeamMetrics = (assignments: { type?: 'lead' | 'colead' | 'advisor' | 'm
                         return member ? (
                           <a class="person-card" href={member.profileUrl} target="_blank" rel="noreferrer">
                             <div class="person-image">
-                              <img class="person-image-default" src={`${base}${member.image.slice(1)}`} alt={`${member.name} portrait`} />
-                              <img class="person-image-hover" src={`${base}${member.hoverImage.slice(1)}`} alt="" aria-hidden="true" />
+                              <img class="person-image-default" src={`${base}${member.image.replace(/^\//, '')}`} alt={`${member.name} portrait`} />
+                              <img class="person-image-hover" src={`${base}${member.hoverImage.replace(/^\//, '')}`} alt="" aria-hidden="true" />
                             </div>
                             <div class="person-copy">
                               <h3>{member.name}</h3>
