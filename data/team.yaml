@@ -1,0 +1,29 @@
+name: Mecatron
+descriptor: robotics
+location: Singapore
+copyright: "© 2026 Mecatron"
+contact:
+  label: Say hello
+  email: contact@mecatron.sg
+navigation:
+  - label: Our team
+    href: /team
+  - label: Vehicles
+    href: /vehicles
+  - label: Competitions
+    href: /competitions
+  - label: Blog
+    href: /logs
+  - label: Outreach
+    href: /outreach
+  - label: Sponsors
+    href: /sponsors
+  - label: Contact
+    href: /contact
+members:
+  - name: Replace with a real member
+    role: Navigation
+    bio: Add a short introduction in this regularly updated YAML file.
+  - name: Replace with a real member
+    role: Vehicle systems
+    bio: Add a short introduction in this regularly updated YAML file.

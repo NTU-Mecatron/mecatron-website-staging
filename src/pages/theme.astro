@@ -1,0 +1,216 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { parse } from 'yaml';
+import site from '../../data/team';
+import themeSource from '../../data/theme.yaml?raw';
+
+const typedTheme = parse(themeSource) as {
+  title: string;
+  intro: string;
+  colors: Array<{
+    name: string;
+    token: string;
+    hex: string;
+    usage: string;
+    className: string;
+    textClass: string;
+  }>;
+  type: Array<{ name: string; role: string; sample: string }>;
+};
+---
+
+<BaseLayout title={typedTheme.title} description={typedTheme.intro} siteName={site.name}>
+  <main class="theme-page">
+    <header class="theme-header">
+      <a class="theme-back" href={base}>← Back to Mecatron</a>
+      <p class="theme-kicker">MECATRON / ARTIST REFERENCE / 01</p>
+      <h1>Make it feel<br /><em>ocean-built.</em></h1>
+      <p class="theme-intro">{typedTheme.intro}</p>
+    </header>
+
+    <section class="theme-home-preview" aria-labelledby="home-preview-title">
+      <div class="theme-home-copy">
+        <p class="theme-kicker">Homepage atmosphere</p>
+        <h2 id="home-preview-title">Built for the <em>water.</em></h2>
+        <p>These are the actual homepage surfaces: deep ink, soft ink panels, paper copy, sea-foam diagrams, and signal-orange actions.</p>
+        <a class="theme-button" href={base}>Open the homepage <span>↗</span></a>
+      </div>
+      <div class="theme-home-visual">
+        <div class="theme-home-grid"></div>
+        <div class="theme-home-vehicle"></div>
+        <div class="theme-home-meta"><span>HYDRA / SURVEY CONSOLE</span><span>#C5EFE5 + #FF6B3D</span></div>
+      </div>
+    </section>
+
+    <section class="theme-section theme-palette" aria-labelledby="colors-title">
+      <div class="theme-section-heading">
+        <p class="theme-kicker">01 / Color study</p>
+        <h2 id="colors-title">The palette</h2>
+      </div>
+      <div class="theme-swatches">
+        {typedTheme.colors.map((color) => (
+          <article class={`theme-swatch ${color.className}`}>
+            <div class="theme-swatch-color" style={`background-color: ${color.hex};`}></div>
+            <div class="theme-swatch-copy">
+              <div class="theme-swatch-title">
+                <h3>{color.name}</h3>
+                <strong>{color.hex}</strong>
+              </div>
+              <p>{color.token} · {color.hex}</p>
+              <small>{color.usage}</small>
+            </div>
+          </article>
+        ))}
+      </div>
+    </section>
+
+    <section class="theme-section" aria-labelledby="type-title">
+      <div class="theme-section-heading">
+        <p class="theme-kicker">02 / Letterforms</p>
+        <h2 id="type-title">The voice</h2>
+      </div>
+      <div class="theme-type-grid">
+        {typedTheme.type.map((font) => (
+          <article class="theme-type-card">
+            <p class="theme-type-role">{font.role}</p>
+            <h3>{font.name}</h3>
+            <p class="theme-type-sample">{font.sample}</p>
+          </article>
+        ))}
+      </div>
+    </section>
+
+    <section class="theme-section" aria-labelledby="components-title">
+      <div class="theme-section-heading">
+        <p class="theme-kicker">03 / Composition</p>
+        <h2 id="components-title">In the wild</h2>
+      </div>
+      <div class="theme-component-grid">
+        <div class="theme-demo-panel">
+          <p class="theme-kicker">Vehicle status</p>
+          <h3>Hydra / ready for water</h3>
+          <div class="theme-status"><span></span> Field tested · 2026</div>
+        </div>
+        <div class="theme-demo-panel theme-demo-signal">
+          <p class="theme-kicker">Action state</p>
+          <h3>Deploy the next dive.</h3>
+          <a class="theme-button" href="#colors-title">Primary action <span>↗</span></a>
+        </div>
+      </div>
+      <div class="theme-dark-sample">
+        <div>
+          <p class="theme-kicker">Dark mode / full surface</p>
+          <h3>Deep ink keeps the work in focus.</h3>
+          <p>Paper carries the message. Foam marks the technical layer. Orange tells people where to act.</p>
+        </div>
+        <div class="theme-sample-list">
+          <div><span class="sample-dot sample-dot-paper"></span><strong>Paper</strong><small>Primary copy</small></div>
+          <div><span class="sample-dot sample-dot-dim"></span><strong>Dim paper</strong><small>Supporting copy</small></div>
+          <div><span class="sample-dot sample-dot-foam"></span><strong>Sea foam</strong><small>Technical detail</small></div>
+          <div><span class="sample-dot sample-dot-signal"></span><strong>Signal orange</strong><small>Action / status</small></div>
+        </div>
+      </div>
+      <div class="theme-materials">
+        <div class="theme-material-grid"></div>
+        <div class="theme-material-ring"></div>
+        <div class="theme-material-copy">
+          <p class="theme-kicker">Material study / 04</p>
+          <h3>Draw with structure.<br /><em>Mark with signal.</em></h3>
+          <p>Use grids, rules, wireframes, and compact labels to suggest the work without making the interface feel like a dashboard.</p>
+        </div>
+        <div class="theme-material-caption">GRID / FOAM / INK / ORANGE</div>
+      </div>
+    </section>
+  </main>
+</BaseLayout>
+
+<style>
+  .theme-page { margin: 0 auto; max-width: 1200px; padding: 28px; }
+  .theme-header { border-bottom: 1px solid var(--line); padding: 60px 0 85px; }
+  .theme-back { color: var(--paper-dim); font: 11px 'DM Mono', monospace; text-transform: uppercase; }
+  .theme-back:hover { color: var(--signal-soft); }
+  .theme-kicker { color: var(--signal-soft); font: 10px 'DM Mono', monospace; letter-spacing: .08em; margin: 0; text-transform: uppercase; }
+  .theme-header h1 { font-size: clamp(4rem, 11vw, 9.5rem); letter-spacing: -.1em; line-height: .78; margin: 55px 0 28px; max-width: 850px; }
+  .theme-header h1 em { color: var(--signal); font-style: normal; }
+  .theme-intro { color: var(--paper-dim); font-size: clamp(1.1rem, 2vw, 1.45rem); max-width: 36ch; }
+  .theme-home-preview { display: grid; gap: 40px; grid-template-columns: .8fr 1.2fr; padding: 70px 0 85px; }
+  .theme-home-copy { align-self: center; }
+  .theme-home-copy h2 { font-size: clamp(3.6rem, 8vw, 8rem); letter-spacing: -.09em; line-height: .82; margin: 24px 0 25px; max-width: 7ch; }
+  .theme-home-copy h2 em { color: var(--signal); font-style: normal; }
+  .theme-home-copy p:not(.theme-kicker) { color: var(--paper-dim); max-width: 30ch; }
+  .theme-home-copy .theme-button { margin-top: 12px; }
+  .theme-home-visual { background: var(--ink-soft); min-height: 430px; overflow: hidden; position: relative; }
+  .theme-home-grid { background: repeating-linear-gradient(90deg, transparent 0 63px, rgba(197,239,229,.08) 64px, transparent 65px), repeating-linear-gradient(0deg, transparent 0 63px, rgba(197,239,229,.08) 64px, transparent 65px); inset: 0; position: absolute; }
+  .theme-home-vehicle { border: 2px solid var(--foam); border-radius: 48% 52% 44% 56%; height: 120px; left: 17%; position: absolute; top: 40%; transform: rotate(-9deg); width: 66%; }
+  .theme-home-vehicle::before { border: 2px solid var(--signal); border-radius: 50%; content: ''; height: 42px; left: -22px; position: absolute; top: 34px; width: 42px; }
+  .theme-home-vehicle::after { background: var(--signal); content: ''; height: 3px; position: absolute; right: -45px; top: 55px; width: 80px; }
+  .theme-home-meta { bottom: 18px; color: var(--paper-dim); display: flex; font: 10px 'DM Mono', monospace; justify-content: space-between; left: 18px; position: absolute; right: 18px; text-transform: uppercase; }
+  .theme-section { border-bottom: 1px solid var(--line); padding: 70px 0 85px; }
+  .theme-section-heading { align-items: baseline; display: flex; gap: 30px; justify-content: space-between; margin-bottom: 34px; }
+  .theme-section-heading h2 { font-size: clamp(2.5rem, 6vw, 5.5rem); letter-spacing: -.08em; line-height: .85; margin: 0; }
+  .theme-swatches { display: grid; gap: 0; grid-template-columns: repeat(7, 1fr); }
+  .theme-swatch { background: var(--ink-soft); }
+  .theme-swatch-color { min-height: 245px; }
+  .swatch-ink { background: var(--ink); }
+  .swatch-ink-soft { background: var(--ink-soft); }
+  .swatch-paper { background: var(--paper); }
+  .swatch-paper-dim { background: var(--paper-dim); }
+  .swatch-signal { background: var(--signal); }
+  .swatch-signal-soft { background: var(--signal-soft); }
+  .swatch-foam { background: var(--foam); }
+  .theme-swatch-copy { border-top: 1px solid var(--line); min-height: 125px; padding: 15px; }
+  .theme-swatch-title { align-items: baseline; display: flex; gap: 12px; justify-content: space-between; }
+  .theme-swatch-copy h3 { font-size: 20px; letter-spacing: -.04em; margin: 0; }
+  .theme-swatch-copy strong { color: var(--paper); font: 11px 'DM Mono', monospace; letter-spacing: .04em; white-space: nowrap; }
+  .theme-swatch-copy p, .theme-swatch-copy small { color: var(--paper-dim); font: 9px 'DM Mono', monospace; margin: 0; text-transform: uppercase; }
+  .theme-swatch-copy small { display: block; margin-top: 14px; }
+  .theme-type-grid, .theme-component-grid { display: grid; gap: 14px; grid-template-columns: repeat(2, 1fr); }
+  .theme-type-card, .theme-demo-panel { background: var(--ink-soft); min-height: 250px; padding: 28px; }
+  .theme-type-role { color: var(--paper-dim); font: 10px 'DM Mono', monospace; text-transform: uppercase; }
+  .theme-type-card h3 { font-size: clamp(2rem, 4vw, 4rem); letter-spacing: -.08em; margin: 40px 0 22px; }
+  .theme-type-sample { color: var(--foam); font-size: 24px; margin: 0; }
+  .theme-type-card:nth-child(2) h3, .theme-type-card:nth-child(2) .theme-type-sample { font-family: 'DM Mono', monospace; font-size: clamp(1.4rem, 3vw, 2.7rem); letter-spacing: -.04em; }
+  .theme-demo-panel { min-height: 280px; }
+  .theme-demo-panel h3 { font-size: clamp(2rem, 4vw, 3.6rem); letter-spacing: -.07em; line-height: .9; margin: 65px 0 25px; max-width: 10ch; }
+  .theme-status { color: var(--paper-dim); font: 10px 'DM Mono', monospace; text-transform: uppercase; }
+  .theme-status span { background: var(--signal); border-radius: 50%; display: inline-block; height: 8px; margin-right: 8px; width: 8px; }
+  .theme-demo-signal { background: var(--ink-soft); }
+  .theme-button { background: var(--signal); border-radius: 5px; color: var(--ink); display: inline-flex; font-size: 13px; font-weight: 700; gap: 18px; padding: 14px 17px; }
+  .theme-button:hover { background: var(--signal-soft); }
+  .theme-button span { font-size: 18px; line-height: .6; }
+  .theme-dark-sample { align-items: center; background: var(--ink); border: 1px solid var(--line); display: grid; gap: 50px; grid-template-columns: 1.2fr .8fr; margin-top: 14px; padding: 38px; }
+  .theme-dark-sample h3 { font-size: clamp(2rem, 4vw, 4rem); letter-spacing: -.07em; line-height: .9; margin: 22px 0 16px; max-width: 12ch; }
+  .theme-dark-sample p:not(.theme-kicker) { color: var(--paper-dim); margin: 0; max-width: 42ch; }
+  .theme-sample-list { border-top: 1px solid var(--line); }
+  .theme-sample-list div { align-items: center; border-bottom: 1px solid var(--line); display: grid; gap: 10px; grid-template-columns: 12px 1fr auto; padding: 13px 0; }
+  .theme-sample-list strong { font-size: 14px; }
+  .theme-sample-list small { color: var(--paper-dim); font: 10px 'DM Mono', monospace; text-transform: uppercase; }
+  .sample-dot { border-radius: 50%; display: block; height: 10px; width: 10px; }
+  .sample-dot-paper { background: var(--paper); }
+  .sample-dot-dim { background: var(--paper-dim); }
+  .sample-dot-foam { background: var(--foam); }
+  .sample-dot-signal { background: var(--signal); }
+  .theme-materials { background: var(--ink-soft); min-height: 440px; overflow: hidden; position: relative; }
+  .theme-material-grid { background: repeating-linear-gradient(90deg, transparent 0 63px, rgba(197,239,229,.1) 64px, transparent 65px), repeating-linear-gradient(0deg, transparent 0 63px, rgba(197,239,229,.1) 64px, transparent 65px); inset: 0; position: absolute; }
+  .theme-material-ring { border: 2px solid var(--foam); border-radius: 50%; height: 310px; opacity: .9; position: absolute; right: 13%; top: 12%; width: 310px; }
+  .theme-material-ring::after { background: var(--signal); border-radius: 50%; content: ''; height: 70px; left: 32px; position: absolute; top: 110px; width: 70px; }
+  .theme-material-copy { left: 7%; max-width: 360px; position: absolute; top: 17%; }
+  .theme-material-copy h3 { font-size: clamp(2.5rem, 6vw, 5.6rem); letter-spacing: -.09em; line-height: .82; margin: 25px 0; }
+  .theme-material-copy h3 em { color: var(--signal); font-style: normal; }
+  .theme-material-copy p:not(.theme-kicker) { color: var(--paper-dim); max-width: 32ch; }
+  .theme-material-caption { bottom: 18px; color: var(--paper-dim); font: 10px 'DM Mono', monospace; left: 18px; position: absolute; }
+  @media (max-width: 760px) {
+    .theme-page { padding: 20px; }
+    .theme-header { padding: 45px 0 65px; }
+    .theme-home-preview { grid-template-columns: 1fr; padding: 55px 0 65px; }
+    .theme-section-heading { align-items: start; flex-direction: column; gap: 16px; }
+    .theme-swatches { grid-template-columns: repeat(2, 1fr); }
+    .theme-swatch-color { min-height: 150px; }
+    .theme-swatch-copy { min-height: 115px; }
+    .theme-type-grid, .theme-component-grid, .theme-dark-sample { grid-template-columns: 1fr; }
+    .theme-dark-sample { padding: 26px; }
+    .theme-materials { min-height: 520px; }
+    .theme-material-ring { height: 220px; right: -10%; top: 50%; width: 220px; }
+    .theme-material-copy { left: 26px; right: 26px; top: 13%; }
+  }
+</style>

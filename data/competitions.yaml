@@ -1,0 +1,18 @@
+- name: MATE ROV 2024
+  series: MATE
+  year: 2024
+- name: SAUVC 2024
+  series: SAUVC
+  year: 2024
+- name: SAUVC 2025
+  series: SAUVC
+  year: 2025
+- name: SAUVC 2026
+  series: SAUVC
+  year: 2026
+- name: RoboSub 2025
+  series: RoboSub
+  year: 2025
+- name: RoboSub 2026
+  series: RoboSub
+  year: 2026
