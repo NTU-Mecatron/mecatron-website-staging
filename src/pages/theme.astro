@@ -17,6 +17,7 @@ const typedTheme = parse(themeSource) as {
   }>;
   type: Array<{ name: string; role: string; sample: string }>;
 };
+const base = import.meta.env.BASE_URL;
 ---
 
 <BaseLayout title={typedTheme.title} description={typedTheme.intro} siteName={site.name}>
